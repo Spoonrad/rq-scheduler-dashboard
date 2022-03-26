@@ -17,6 +17,7 @@ provides the option to require HTTP Basic Auth in a few lines of code.
 
 """
 from functools import wraps
+import json
 from collections import Counter
 from math import ceil
 
@@ -116,6 +117,8 @@ def serialize_queues(queues):
 
 
 def serialize_job(job, scheduled_for=None):
+    print('SERIALIZE')
+    print(job.description)
     return dict(
         id=job.id,
         created_at=serialize_date(job.created_at),
@@ -124,8 +127,9 @@ def serialize_job(job, scheduled_for=None):
         ended_at=serialize_date(job.ended_at),
         origin=job.origin,
         result=job._result,
+        description=job.description,
         exc_info=job.exc_info,
-        description=job.description)
+        kwargs=json.dumps(job.kwargs, indent=2))
 
 
 @blueprint.route('/', defaults={'queue_name': None, 'page': '1'})

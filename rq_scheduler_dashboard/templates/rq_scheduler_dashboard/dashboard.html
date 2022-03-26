@@ -97,7 +97,7 @@
             <tr data-role="job" data-job-id="<%= d.id %>">
                 <td>
                     <i class="icon-file" style="opacity: .5;"></i>
-                    <span class="description"><%= $('<div/>').text(d.description).html() %></span>
+                    <span class="description"><%= $('<div/>').text(d.kwargs).html() %></span>
                     <% if (d.exc_info) { %>
                         <span class="origin">from <strong><%= d.origin %></strong></span>
                     <% } %>
