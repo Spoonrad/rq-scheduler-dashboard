@@ -117,8 +117,6 @@ def serialize_queues(queues):
 
 
 def serialize_job(job, scheduled_for=None):
-    print('SERIALIZE')
-    print(job.description)
     return dict(
         id=job.id,
         created_at=serialize_date(job.created_at),
